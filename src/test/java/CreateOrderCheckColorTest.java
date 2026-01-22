@@ -1,4 +1,5 @@
-import entities.OrderRequest;
+import api.OrderApi;
+import entities.CreateOrderRequest;
 import io.qameta.allure.Description;
 import io.qameta.allure.Step;
 import io.qameta.allure.junit4.DisplayName;
@@ -34,7 +35,7 @@ public class CreateOrderCheckColorTest extends BaseOrderTest {
     @DisplayName("Проверка успешного создания заказа с разными вариантами цвета")
     @Description("Тест создаёт заказ с разными вариантами цвета и проверяет, что сервер возвращает 201 и поле track присутствует")
     public void orderShouldBeCreatedSuccessfully() {
-        OrderRequest orderRequest = new OrderRequest(
+        CreateOrderRequest createOrderRequest = new CreateOrderRequest(
                 "Naruto",
                 "Uchiha",
                 "Konoha, 142 apt.",
@@ -45,7 +46,7 @@ public class CreateOrderCheckColorTest extends BaseOrderTest {
                 "Saske, come back to Konoha",
                 colors
         );
-        Response response = createOrder(orderRequest);
+        Response response = OrderApi.createOrder(createOrderRequest);
         checkOrderCreatedSuccessfully(response);
     }
 
